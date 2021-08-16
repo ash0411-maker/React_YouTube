@@ -1,23 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { useState } from "react";
 
 function App() {
+  // new Date()は現在時刻を取得します。
+  // React が「state の値が変更されているかどうか」を判断して、画面表示を切り替えている
+  const [state, setState] = useState(new Date());
+  setInterval(() => {
+    setState(new Date());
+  }, 1000);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {/*
+          JSX内で変数を画面表示したい場合は、{}で変数を囲む必要があります。
+        */}
+        <p>{state.toLocaleTimeString()}</p>
       </header>
     </div>
   );
